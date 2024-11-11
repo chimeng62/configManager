@@ -1,0 +1,49 @@
+#include <Arduino.h>
+#include "ConfigManager.h"
+
+// Global variables to store config values
+double myDouble;
+int myInt;
+bool myBool;
+String myString;
+const char *myCString = nullptr;
+
+// Filename to store config: config.json
+ConfigManager configManager("/config.json");
+
+void setup() {
+    // Start serial communication
+    Serial.begin(115200);
+
+    // Initialize the ConfigManager and load configuration
+    if (configManager.initConfig()) {
+        // Load configManager values into global variables
+        myDouble = configManager.setConfigValue("myDoubleKey", 1.23);
+        myInt = configManager.setConfigValue("myIntKey", 42);
+        myBool = configManager.setConfigValue("myBoolKey", true);
+        myString = configManager.setConfigValue("myStringKey", "defaultString");
+        myCString = configManager.setConfigValue("myCStringKey", "defaultCString");
+
+        // Print current configuration to the serial monitor
+        Serial.println("Initial Config Loaded:");
+        configManager.printConfig();
+    } else {
+        Serial.println("Failed to initialize or load configuration.");
+    }
+
+    // Simulate user input to update configManager values
+    Serial.println("\nUpdating Config Values...");
+    configManager.updateConfigValue("myDoubleKey", 3.14159);
+    configManager.updateConfigValue("myIntKey", 100);
+    configManager.updateConfigValue("myBoolKey", false);
+    configManager.updateConfigValue("myStringKey", "updatedString");
+    configManager.updateConfigValue("myCStringKey", "updatedCString");
+
+    // Print updated configuration to serial monitor
+    Serial.println("\nUpdated Config:");
+    configManager.printConfig();
+}
+
+void loop() {
+    // Nothing to do in loop, everything happens in setup for this example
+}

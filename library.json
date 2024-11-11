@@ -1,0 +1,20 @@
+{
+    "name": "ConfigManager",
+    "version": "1.0.0",
+    "description": "Wrapper for LittleFS file system to easily manage saving config value to flash memory",
+    "keywords": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/chimeng62/ConfigManager.git"
+    },
+    "authors": [
+        {
+            "name": "Chimeng62",
+            "email": "chimeng62@gmail.com",
+            "maintainer": true
+        }
+    ],
+    "license": "MIT",
+    "frameworks": "arduino",
+    "platforms": "*"
+}
