@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "ConfigManager.h"
+#include <ConfigManager.h>
 
 // Global variables to store config values
 double myDouble;
